@@ -27,31 +27,31 @@ with open(tweets_filename) as tweets_file:
                     r=r.split(':',1)[1]
                     r=r.lstrip(' ')
                     r=r.replace('&amp','&')
-                    if len(r) > 140:
-                        print(r)
-                    r=r[:140]
-                    idarray.append(q)
-                    createarray.append(e)
-                    textarray.append(r)
-                    tweetlength.append(len(r))
-                    w=w[:-4]
-                    w=w.rsplit(' ', 1)[1]
-                    if w.strip()=='iPhone':
-                        sourcearray.append('1')
-                        isource.append(len(r))
-                    elif w.strip()=='Android':
-                        sourcearray.append('2')
-                        asource.append(len(r))
-                    elif w.strip()=='iPad':
-                        sourcearray.append('3')
-                        psource.append(len(r))
-                    elif w.strip()=='Client':
-                        sourcearray.append('4')
-                        wsource.append(len(r))
-                    else:
-                        sourcearray.append('5')
-                        osource.append(len(r))
-                    total.append(len(r))
+                if len(r) > 140:
+                    print(r)
+                r=r[:140]
+                idarray.append(q)
+                createarray.append(e)
+                textarray.append(r)
+                tweetlength.append(len(r))
+                w=w[:-4]
+                w=w.rsplit(' ', 1)[1]
+                if w.strip()=='iPhone':
+                    sourcearray.append('1')
+                    isource.append(len(r))
+                elif w.strip()=='Android':
+                    sourcearray.append('2')
+                    asource.append(len(r))
+                elif w.strip()=='iPad':
+                    sourcearray.append('3')
+                    psource.append(len(r))
+                elif w.strip()=='Client':
+                    sourcearray.append('4')
+                    wsource.append(len(r))
+                else:
+                    sourcearray.append('5')
+                    osource.append(len(r))
+                total.append(len(r))
 #            hashtags = []
 #            for hashtag in tweet['entities']['hashtags']:
 #                hashtags.append(hashtag['text'])
@@ -61,7 +61,6 @@ with open(tweets_filename) as tweets_file:
             continue
 #print (sourcearray)
 #mt.scatter(tweetlength,sourcearray)
-mt.clf()
 f,axarr=mt.subplots(nrows=2, ncols=1, sharex=True, sharey=True, squeeze=True, subplot_kw=None, gridspec_kw=None)
 l1=axarr[1].violinplot(wsource, points=p, widths=0.3, showmeans=True, showextrema=False, showmedians=False, vert=False)
 l2=axarr[1].violinplot(asource, points=p, widths=0.3, showmeans=True, showextrema=False, showmedians=False, vert=False)
