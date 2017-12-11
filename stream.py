@@ -9,6 +9,9 @@ access_token = config['DEFAULT']['access_token']
 access_token_secret = config['DEFAULT']['access_token_secret']
 consumer_key = config['DEFAULT']['consumer_key']
 consumer_secret = config['DEFAULT']['consumer_secret']
+kwarg='uk'
+count=5000
+name=kwarg+str(count)+'.txt'
 class StdOutListener(StreamListener):
 
     def __init__(self):
@@ -17,9 +20,9 @@ class StdOutListener(StreamListener):
 #        print (data)
         self.count=self.count+1
         print(self.count)
-        if self.count>5:
+        if self.count>count:
             sys.exit(0)
-        with open('capture.txt', 'a') as f:
+        with open(name, 'w') as f:
                 f.write(data)
                 return True
         return True
@@ -36,4 +39,4 @@ if __name__ == '__main__':
     auth.set_access_token(access_token, access_token_secret)
     stream = Stream(auth, l)
 
-    stream.filter(track=['uk'])
+    stream.filter(track=[kwarg])
